@@ -1,0 +1,119 @@
+/* Getting sentence  by adding character by character */
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+typedef struct node{
+	char a;
+	struct node *next;
+}node_t;
+
+int isEmpty(node_t *head);
+void pushFront(node_t **head);
+void printList(node_t *head);
+void pushBack(node_t *head);
+
+int main(void)
+{
+	node_t *head=NULL;
+	
+	pushFront(&head);
+	pushBack(head);
+	printList(head);
+    	
+}
+
+int isEmpty(node_t *head)
+{
+	if(head==NULL)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void pushFront(node_t **head)
+{
+	node_t *newNode;
+	char b;
+	int i;
+	do{
+	printf("Enter a char to beginning:");
+	scanf(" %c",&b);
+	if(isEmpty(head))
+	{
+		newNode=malloc(sizeof(node_t));
+		newNode->a=b;
+		newNode->next=NULL;
+		*head=newNode;
+	}
+	else
+	{
+		newNode=malloc(sizeof(node_t));
+		newNode->a=b;
+		newNode->next=*head;
+		*head=newNode;
+	}	
+	printf("Enter -1 to exit:");
+	scanf("%d",&i);
+	}while(i!=-1);
+	
+}
+
+void printList(node_t *head)
+{
+	node_t *current=head;
+	if(head==NULL)
+	{
+		printf("List is empty");
+		
+	}
+	else
+	{
+		while(current!=NULL)
+		{
+			printf("%c",current->a);
+			current=current->next;
+		}
+	}
+}
+
+
+void pushBack(node_t *head)
+{
+	node_t *current=head;
+	char b;
+	int i;
+	do{
+	printf("Enter a char to back :");
+	scanf(" %c",&b);
+	if(isEmpty(head))
+	{
+		node_t *newNode=malloc(sizeof(node_t));
+		newNode->a=b;
+		newNode->next=NULL;
+		head=newNode;
+	}
+	else
+	{
+		while(current->next!=NULL)
+		{
+			current=current->next;
+		}
+		current->next=malloc(sizeof(node_t));
+		current->next->a=b;
+		current->next->next=NULL;
+	}	
+	printf("enter -1 to exit:");
+	scanf("%d",&i);
+	}while(i!=-1);
+	
+}
+
